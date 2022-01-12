@@ -1,8 +1,12 @@
+import { subDays } from "date-fns";
 import ReposService from "../services/repos";
+import { queryAfterThisDate } from "../utils/dateQuery";
+
+const LAST_SEVEN_DAYS = 7;
 
 function getAllRepos() {
   const params = {
-    q: "created:>2012-01-02",
+    q: queryAfterThisDate(subDays(new Date(), LAST_SEVEN_DAYS)),
     sort: "stars",
     order: "desc",
   };
