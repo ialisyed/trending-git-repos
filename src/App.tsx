@@ -5,7 +5,6 @@ import "./App.css";
 import ReposManager from "./features/repos/reposManager";
 
 function App() {
-  ReposManager.getTrendingRepos().then((repos: any) => console.log(repos));
   return (
     <div className="App">
       <header className="App-header">
