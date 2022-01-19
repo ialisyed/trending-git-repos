@@ -3,13 +3,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Repos from "./features/repos/RepoList";
+import Header from "./layout/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <Header />
+      {/* <Routes>
         <Route path="/" element={<Repos />} />
-      </Routes>
+      </Routes> */}
     </BrowserRouter>
   );
 }

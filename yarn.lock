@@ -2035,6 +2035,13 @@
   dependencies:
     csstype "^3.0.2"
 
+"@types/styled-system__css@^5.0.16":
+  version "5.0.16"
+  resolved "https://registry.yarnpkg.com/@types/styled-system__css/-/styled-system__css-5.0.16.tgz#cae75cef03dfa1020703e842a8b1c14d8f9a8f33"
+  integrity sha512-Cji5miCIpR27m8yzH6y3cLU6106N4GVyPgUhBQ4nL7VxgoeAtRdAriKdGTnRgJzSpT3HyB7h5G//cDWOl0M1jQ==
+  dependencies:
+    csstype "^3.0.2"
+
 "@types/testing-library__dom@*":
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/@types/testing-library__dom/-/testing-library__dom-7.5.0.tgz#e0a00dd766983b1d6e9d10d33e708005ce6ad13e"
