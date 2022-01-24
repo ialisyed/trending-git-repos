@@ -3,12 +3,13 @@ import Flex from "../components/Flex";
 
 const Header = () => (
   <Flex
-    boxShadow="md"
+    boxShadow="10px"
     backgroundColor="#e0e0e0"
     justifyContent="center"
     alignItems="center"
     height={65}
-    padding="sm"
+    mb="10px"
+    padding="10px"
   >
     <a href="/" title="Trending Git Repos">
       Trending Git Repos
