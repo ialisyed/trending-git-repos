@@ -1,44 +1,72 @@
 import React, { FC } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import styled from "styled-components";
+import { useAppDispatch } from "../../app/hooks";
+
 import Box from "../../components/Box";
 import Divider from "../../components/Divider";
 import Flex from "../../components/Flex";
-import { Repo } from "./reposSlice";
+import { starRepo, unStarRepo } from "./reposSlice";
 
 interface Props {
-  repo: Repo;
+  isStarred: boolean;
+  description: string;
+  stars: number;
+  fullName: string;
+  idx: number;
 }
 
-const RepoCard: FC<Props> = ({ repo }) => {
-  return (
-    <Flex
-      borderWidth="1px"
-      borderStyle="solid"
-      borderRadius="5px"
-      boxShadow="2px 2px 2px rgba(0,0,0,0.2)"
-      p="10px"
-      flexDirection="column"
-      maxHeight="190px"
-      minHeight="190px"
-    >
-      <Flex flexDirection="column">
-        <Flex justifyContent="space-between">
-          <Box>
-            Stars:
-            {" " + repo.stars}
+const StarContainer = styled(Flex)`
+  &:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  &:active {
+    color: white;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const RepoCard: FC<Props> = React.memo(
+  ({ isStarred, description, fullName, stars, idx }) => {
+    console.log("reder");
+    const dispatch = useAppDispatch();
+    return (
+      <Flex
+        borderWidth="1px"
+        borderStyle="solid"
+        borderRadius="5px"
+        boxShadow="2px 2px 2px rgba(0,0,0,0.2)"
+        p="10px"
+        flexDirection="column"
+        maxHeight="190px"
+        minHeight="190px"
+      >
+        <Flex flexDirection="column">
+          <StarContainer
+            onClick={() =>
+              isStarred ? dispatch(unStarRepo(idx)) : dispatch(starRepo(idx))
+            }
+            p="5px"
+            justifyContent="space-between"
+          >
+            <Box>Star</Box>
+            <Box>{stars}</Box>
+            <Box>{isStarred ? <FaStar color="#FFEA00" /> : <FaRegStar />}</Box>
+          </StarContainer>
+          <Divider />
+          <Box mt="10px" mb="10px">
+            {fullName}
           </Box>
-          <Box>{repo.isStarred ? "true" : "false"}</Box>
         </Flex>
         <Divider />
-        <Box mt="10px" mb="10px">
-          {repo.fullName}
-        </Box>
+        <Flex flex={0.8}>
+          <Box mt="5px">{description}</Box>
+        </Flex>
       </Flex>
-      <Divider />
-      <Flex flex={0.8}>
-        <Box mt="5px">{repo.description}</Box>
-      </Flex>
-    </Flex>
-  );
-};
+    );
+  }
+);
 
 export default RepoCard;

@@ -19,10 +19,10 @@ const RepoList: FC<Props> = () => {
   return (
     <Container>
       <Row alignItems="center" justifyContent="center">
-        {data.map((repo: Repo) => (
+        {data.map((repo: Repo, idx: number) => (
           <Col md={3} sm={12} key={repo.fullName}>
             <Box mb="10px">
-              <RepoCard repo={repo} />
+              <RepoCard {...repo} idx={idx} />
             </Box>
           </Col>
         ))}
