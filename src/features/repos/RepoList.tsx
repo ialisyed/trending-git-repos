@@ -5,6 +5,7 @@ import Box from "../../components/Box";
 import CheckboxLabel from "../../components/ChecboxLabel";
 import Checkbox from "../../components/Checkbox";
 import Flex from "../../components/Flex";
+import LOCALE from "../../locale";
 import RepoCard from "./RepoCard";
 import { getTrendingReposAsync, Repo, selectRepos } from "./reposSlice";
 
@@ -41,8 +42,6 @@ const RepoList: FC<Props> = () => {
       </Col>
     ));
 
-  console.log("render");
-
   return (
     <Container>
       <Flex alignItems="center" justifyContent="center" mb="10px">
@@ -53,7 +52,7 @@ const RepoList: FC<Props> = () => {
             }
             checked={shouldFilterStarred}
           />
-          <CheckboxLabel>View all starred repos</CheckboxLabel>
+          <CheckboxLabel>{LOCALE.VIEW_ALL_STARRED_REPOS}</CheckboxLabel>
         </label>
       </Flex>
       <Row alignItems="center" justifyContent="center">

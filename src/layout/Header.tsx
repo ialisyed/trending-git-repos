@@ -1,5 +1,6 @@
 import React from "react";
 import Flex from "../components/Flex";
+import LOCALE from "../locale";
 
 const Header = () => (
   <Flex
@@ -12,7 +13,7 @@ const Header = () => (
     padding="10px"
   >
     <a href="/" title="Trending Git Repos">
-      Trending Git Repos
+      {LOCALE.TRENDING_GIT_REPOS}
     </a>
   </Flex>
 );

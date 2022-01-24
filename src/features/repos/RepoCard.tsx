@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../app/hooks";
 import Box from "../../components/Box";
 import Divider from "../../components/Divider";
 import Flex from "../../components/Flex";
+import LOCALE from "../../locale";
 import { starRepo, unStarRepo } from "./reposSlice";
 
 interface Props {
@@ -30,7 +31,6 @@ const StarContainer = styled(Flex)`
 
 const RepoCard: FC<Props> = React.memo(
   ({ isStarred, description, fullName, stars, idx }) => {
-    console.log("reder");
     const dispatch = useAppDispatch();
     return (
       <Flex
@@ -51,7 +51,7 @@ const RepoCard: FC<Props> = React.memo(
             p="5px"
             justifyContent="space-between"
           >
-            <Box>{isStarred ? "Starred" : "Star"}</Box>
+            <Box>{isStarred ? LOCALE.STARRED : LOCALE.STAR}</Box>
             <Box>{stars}</Box>
             <Box>{isStarred ? <FaStar color="#FFEA00" /> : <FaRegStar />}</Box>
           </StarContainer>
