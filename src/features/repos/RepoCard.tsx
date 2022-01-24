@@ -51,7 +51,7 @@ const RepoCard: FC<Props> = React.memo(
             p="5px"
             justifyContent="space-between"
           >
-            <Box>Star</Box>
+            <Box>{isStarred ? "Starred" : "Star"}</Box>
             <Box>{stars}</Box>
             <Box>{isStarred ? <FaStar color="#FFEA00" /> : <FaRegStar />}</Box>
           </StarContainer>

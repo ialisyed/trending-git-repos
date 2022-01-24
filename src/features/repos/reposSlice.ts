@@ -8,6 +8,7 @@ export interface Repo {
   description: string;
   stars: number;
   isStarred: boolean;
+  id: number;
 }
 
 export interface ReposState {
@@ -45,12 +46,14 @@ export const reposSlice = createSlice({
       const repo = state.data[index];
       repo.isStarred = true;
       repo.stars += 1;
+      localStorage.setItem(repo.id.toString(), "1");
     },
     unStarRepo: (state, action: PayloadAction<number>) => {
       const index = action.payload;
       const repo = state.data[index];
       repo.isStarred = false;
       repo.stars -= 1;
+      localStorage.removeItem(repo.id.toString());
     },
   },
   // The `extraReducers` field lets the slice handle actions defined elsewhere,
