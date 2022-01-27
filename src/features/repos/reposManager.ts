@@ -1,6 +1,5 @@
 import { subDays } from "date-fns";
 import { initRepo } from "./reposFactory";
-import { Dict } from "../../interfaces";
 import ReposService from "../../services/repos";
 import { queryAfterThisDate } from "../../utils/dateQuery";
 import { Repo } from "./reposSlice";
