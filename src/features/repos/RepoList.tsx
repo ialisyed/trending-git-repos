@@ -9,6 +9,19 @@ import LOCALE from "../../locale";
 import RepoCard from "./RepoCard";
 import { getTrendingReposAsync, Repo, selectRepos } from "./reposSlice";
 
+interface RepoItemProps {
+  repo: Repo;
+  idx: number;
+}
+
+const RepoItem: FC<RepoItemProps> = ({ repo, idx }) => (
+  <Col md={3} sm={12} key={repo.fullName}>
+    <Box mb="10px">
+      <RepoCard {...repo} idx={idx} />
+    </Box>
+  </Col>
+);
+
 interface Props {}
 
 const RepoList: FC<Props> = () => {
@@ -25,22 +38,10 @@ const RepoList: FC<Props> = () => {
   const renderStarredRepos = () =>
     data
       .filter((_repo) => _repo.isStarred)
-      .map((repo: Repo, idx: number) => (
-        <Col md={3} sm={12} key={repo.fullName}>
-          <Box mb="10px">
-            <RepoCard {...repo} idx={idx} />
-          </Box>
-        </Col>
-      ));
+      .map((repo: Repo, idx: number) => <RepoItem repo={repo} idx={idx} />);
 
   const renderRepos = () =>
-    data.map((repo: Repo, idx: number) => (
-      <Col md={3} sm={12} key={repo.fullName}>
-        <Box mb="10px">
-          <RepoCard {...repo} idx={idx} />
-        </Box>
-      </Col>
-    ));
+    data.map((repo: Repo, idx: number) => <RepoItem repo={repo} idx={idx} />);
 
   return (
     <Container>

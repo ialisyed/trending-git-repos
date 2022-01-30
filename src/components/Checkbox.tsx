@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 const CheckboxContainer = styled.div`
   display: inline-block;
