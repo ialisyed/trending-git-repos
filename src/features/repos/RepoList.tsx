@@ -15,7 +15,7 @@ interface RepoItemProps {
 }
 
 const RepoItem: FC<RepoItemProps> = ({ repo, idx }) => (
-  <Col md={3} sm={12} key={repo.fullName}>
+  <Col md={3} sm={12}>
     <Box mb="10px">
       <RepoCard {...repo} idx={idx} />
     </Box>
@@ -38,10 +38,14 @@ const RepoList: FC<Props> = () => {
   const renderStarredRepos = () =>
     data
       .filter((_repo) => _repo.isStarred)
-      .map((repo: Repo, idx: number) => <RepoItem repo={repo} idx={idx} />);
+      .map((repo: Repo, idx: number) => (
+        <RepoItem key={repo.fullName} repo={repo} idx={idx} />
+      ));
 
   const renderRepos = () =>
-    data.map((repo: Repo, idx: number) => <RepoItem repo={repo} idx={idx} />);
+    data.map((repo: Repo, idx: number) => (
+      <RepoItem key={repo.fullName} repo={repo} idx={idx} />
+    ));
 
   return (
     <Container>
