@@ -45,6 +45,8 @@ const RepoCard: FC<Props> = React.memo(
       >
         <Flex flexDirection="column">
           <StarContainer
+            data-cy="star-btn"
+            data-starred={isStarred}
             onClick={() =>
               isStarred ? dispatch(unStarRepo(idx)) : dispatch(starRepo(idx))
             }

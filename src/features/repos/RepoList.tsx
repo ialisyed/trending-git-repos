@@ -56,7 +56,7 @@ const RepoList: FC<Props> = () => {
           <CheckboxLabel>{LOCALE.VIEW_ALL_STARRED_REPOS}</CheckboxLabel>
         </label>
       </Flex>
-      <Row alignItems="center" justifyContent="center">
+      <Row data-cy="repo-list" alignItems="center" justifyContent="center">
         {shouldFilterStarred ? renderStarredRepos() : renderRepos()}
       </Row>
     </Container>
