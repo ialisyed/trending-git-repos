@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 
 context("Repo List", () => {
-  before(() => {
-    cy.intercept("GET", "**/repositories/*", {
+  beforeEach(() => {
+    cy.intercept("GET", "**/repositories*", {
       fixture: "repo-response.json",
-    }).as("getRepos");
-
+    }).as("getUsers");
     cy.visit("http://localhost:3000");
+    cy.wait("@getUsers");
   });
 
   describe("When user visits the page", () => {
