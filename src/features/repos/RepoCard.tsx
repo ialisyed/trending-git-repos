@@ -53,8 +53,8 @@ const RepoCard: FC<Props> = React.memo(
             p="5px"
             justifyContent="space-between"
           >
-            <Box>{isStarred ? LOCALE.STARRED : LOCALE.STAR}</Box>
-            <Box>{stars}</Box>
+            <Flex flex={1}>{isStarred ? LOCALE.STARRED : LOCALE.STAR}</Flex>
+            <Flex flex={1}>{stars}</Flex>
             <Box>{isStarred ? <FaStar color="#FFEA00" /> : <FaRegStar />}</Box>
           </StarContainer>
           <Divider />

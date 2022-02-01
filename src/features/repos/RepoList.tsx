@@ -7,27 +7,19 @@ import Checkbox from "../../components/Checkbox";
 import Flex from "../../components/Flex";
 import LOCALE from "../../locale";
 import RepoCard from "./RepoCard";
-import { getTrendingReposAsync, Repo, selectRepos } from "./reposSlice";
-
-interface RepoItemProps {
-  repo: Repo;
-  idx: number;
-}
-
-const RepoItem: FC<RepoItemProps> = ({ repo, idx }) => (
-  <Col md={3} sm={12}>
-    <Box mb="10px">
-      <RepoCard {...repo} idx={idx} />
-    </Box>
-  </Col>
-);
+import {
+  getTrendingReposAsync,
+  Repo,
+  selectComputedRepos,
+  selectLocalFilters,
+  setStarredFilter,
+} from "./reposSlice";
 
 interface Props {}
 
 const RepoList: FC<Props> = () => {
-  const [shouldFilterStarred, setShouldFilterStarred] = useState(false);
-
-  const data = useAppSelector(selectRepos);
+  const data = useAppSelector(selectComputedRepos);
+  const localFilters = useAppSelector(selectLocalFilters);
 
   const dispatch = useAppDispatch();
 
@@ -35,16 +27,13 @@ const RepoList: FC<Props> = () => {
     dispatch(getTrendingReposAsync());
   }, []);
 
-  const renderStarredRepos = () =>
-    data
-      .filter((_repo) => _repo.isStarred)
-      .map((repo: Repo, idx: number) => (
-        <RepoItem key={repo.fullName} repo={repo} idx={idx} />
-      ));
-
   const renderRepos = () =>
     data.map((repo: Repo, idx: number) => (
-      <RepoItem key={repo.fullName} repo={repo} idx={idx} />
+      <Col md={3} sm={12} key={repo.fullName}>
+        <Box mb="10px">
+          <RepoCard {...repo} idx={idx} />
+        </Box>
+      </Col>
     ));
 
   return (
@@ -53,15 +42,15 @@ const RepoList: FC<Props> = () => {
         <label>
           <Checkbox
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setShouldFilterStarred(e!.target.checked)
+              dispatch(setStarredFilter(e!.target.checked))
             }
-            checked={shouldFilterStarred}
+            checked={localFilters.starred}
           />
           <CheckboxLabel>{LOCALE.VIEW_ALL_STARRED_REPOS}</CheckboxLabel>
         </label>
       </Flex>
       <Row data-cy="repo-list" alignItems="center" justifyContent="center">
-        {shouldFilterStarred ? renderStarredRepos() : renderRepos()}
+        {renderRepos()}
       </Row>
     </Container>
   );
