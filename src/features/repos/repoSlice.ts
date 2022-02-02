@@ -116,4 +116,6 @@ export const selectComputedRepos = createSelector(
 
 export const selectRepoError = (state: RootState) => state.repo.error;
 
+export const selectRepoLoading = (state: RootState) => state.repo.loading;
+
 export default repoSlice.reducer;

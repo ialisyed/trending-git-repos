@@ -14,6 +14,7 @@ import {
   selectComputedRepos,
   selectLocalFilters,
   selectRepoError,
+  selectRepoLoading,
   setStarredFilter,
 } from "./repoSlice";
 
@@ -22,6 +23,7 @@ interface Props {}
 const RepoList: FC<Props> = () => {
   const data = useAppSelector(selectComputedRepos);
   const error = useAppSelector(selectRepoError);
+  const loading = useAppSelector(selectRepoLoading);
   const localFilters = useAppSelector(selectLocalFilters);
 
   const dispatch = useAppDispatch();
@@ -29,6 +31,30 @@ const RepoList: FC<Props> = () => {
   useEffect(() => {
     dispatch(getTrendingReposAsync());
   }, []);
+
+  const onCheckboxChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      dispatch(setStarredFilter(e!.target.checked)),
+    []
+  );
+
+  if (loading) {
+    // can be replaced with a loader
+    return (
+      <Flex alignItems="center" justifyContent="center" mb="10px">
+        <label>Loading...</label>
+      </Flex>
+    );
+  }
+
+  if (error) {
+    // error message/handling can be improved
+    return (
+      <Flex alignItems="center" justifyContent="center" mb="10px">
+        <label>{error}</label>
+      </Flex>
+    );
+  }
 
   const renderRepos = () =>
     data.map((repo: Repo, idx: number) => (
@@ -44,9 +70,7 @@ const RepoList: FC<Props> = () => {
       <Flex alignItems="center" justifyContent="center" mb="10px">
         <label>
           <Checkbox
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              dispatch(setStarredFilter(e!.target.checked))
-            }
+            onChange={onCheckboxChange}
             checked={localFilters.starred}
           />
           <CheckboxLabel>{LOCALE.VIEW_ALL_STARRED_REPOS}</CheckboxLabel>
