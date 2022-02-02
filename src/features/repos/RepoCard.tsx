@@ -14,6 +14,7 @@ interface Props {
   description: string;
   stars: number;
   fullName: string;
+  url: string;
   idx: number;
 }
 
@@ -30,7 +31,7 @@ const StarContainer = styled(Flex)`
 `;
 
 const RepoCard: FC<Props> = React.memo(
-  ({ isStarred, description, fullName, stars, idx }) => {
+  ({ isStarred, description, fullName, stars, url, idx }) => {
     const dispatch = useAppDispatch();
     return (
       <Flex
@@ -59,7 +60,12 @@ const RepoCard: FC<Props> = React.memo(
           </StarContainer>
           <Divider />
           <Box mt="10px" mb="10px">
-            {fullName}
+            {/*
+            https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/ 
+             */}
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              {fullName}
+            </a>
           </Box>
         </Flex>
         <Divider />
