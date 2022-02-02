@@ -13,13 +13,15 @@ import {
   Repo,
   selectComputedRepos,
   selectLocalFilters,
+  selectRepoError,
   setStarredFilter,
-} from "./reposSlice";
+} from "./repoSlice";
 
 interface Props {}
 
 const RepoList: FC<Props> = () => {
   const data = useAppSelector(selectComputedRepos);
+  const error = useAppSelector(selectRepoError);
   const localFilters = useAppSelector(selectLocalFilters);
 
   const dispatch = useAppDispatch();

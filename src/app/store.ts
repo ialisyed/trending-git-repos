@@ -1,9 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import reposReducer from "../features/repos/reposSlice";
+import repoReducer from "../features/repos/repoSlice";
 
 export const store = configureStore({
   reducer: {
-    repos: reposReducer,
+    repo: repoReducer,
   },
 });
 

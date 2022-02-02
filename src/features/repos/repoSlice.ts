@@ -5,7 +5,8 @@ import {
   createSelector,
 } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
-import ReposManager from "./reposManager";
+import LOCALE from "../../locale";
+import RepoManager from "./repoManager";
 
 export interface Repo {
   fullName: string;
@@ -25,7 +26,7 @@ interface LocalRepoFilters {
   starred: boolean;
 }
 
-export interface ReposState {
+interface RepoState {
   data: Repo[];
   loading: boolean;
   error?: string;
@@ -33,7 +34,7 @@ export interface ReposState {
   localFilters: LocalRepoFilters;
 }
 
-const initialState: ReposState = {
+const initialState: RepoState = {
   data: [],
   loading: false,
   filters: {
@@ -46,16 +47,16 @@ const initialState: ReposState = {
 };
 
 export const getTrendingReposAsync = createAsyncThunk(
-  "repos/getAllRepos",
+  "repo/getAllRepos",
   async (arg, { getState }) => {
     const state = getState() as RootState;
-    const response = await ReposManager.getTrendingRepos(state.repos.filters);
+    const response = await RepoManager.getTrendingRepos(state.repo.filters);
     return response;
   }
 );
 
-export const reposSlice = createSlice({
-  name: "repos",
+export const repoSlice = createSlice({
+  name: "repo",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -90,23 +91,29 @@ export const reposSlice = createSlice({
           state.loading = false;
           state.data = action.payload;
         }
-      );
+      )
+      .addCase(getTrendingReposAsync.rejected, (state) => {
+        state.error = LOCALE.SOMETHING_WENT_WRONG;
+        state.loading = false;
+      });
   },
 });
 
-export const { starRepo, unStarRepo, setStarredFilter } = reposSlice.actions;
+export const { starRepo, unStarRepo, setStarredFilter } = repoSlice.actions;
 
-export const selectRepos = (state: RootState) => state.repos.data;
+export const selectRepos = (state: RootState) => state.repo.data;
 
 export const selectStarredRepos = createSelector([selectRepos], (repos) =>
   repos.filter((repos) => repos.isStarred)
 );
-export const selectLocalFilters = (state: RootState) =>
-  state.repos.localFilters;
+export const selectLocalFilters = (state: RootState) => state.repo.localFilters;
 
 export const selectComputedRepos = createSelector(
   [selectLocalFilters, selectRepos, selectStarredRepos],
   (localFilters, repos, starredRepos) =>
     localFilters.starred ? starredRepos : repos
 );
-export default reposSlice.reducer;
+
+export const selectRepoError = (state: RootState) => state.repo.error;
+
+export default repoSlice.reducer;

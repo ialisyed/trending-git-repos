@@ -7,7 +7,7 @@ import Box from "../../components/Box";
 import Divider from "../../components/Divider";
 import Flex from "../../components/Flex";
 import LOCALE from "../../locale";
-import { starRepo, unStarRepo } from "./reposSlice";
+import { starRepo, unStarRepo } from "./repoSlice";
 
 interface Props {
   isStarred: boolean;

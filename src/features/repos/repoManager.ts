@@ -1,9 +1,9 @@
 import { subDays } from "date-fns";
 
-import ReposService from "../../services/api/repos";
+import RepoService from "../../services/api/repo";
 import { queryAfterThisDate } from "../../utils/dateQuery";
-import { initRepo } from "./reposFactory";
-import { Repo, RepoFilters } from "./reposSlice";
+import { initRepo } from "./repoFactory";
+import { Repo, RepoFilters } from "./repoSlice";
 
 const LAST_SEVEN_DAYS = 7;
 
@@ -11,14 +11,14 @@ async function getTrendingRepos(filters: RepoFilters): Promise<Repo[]> {
   const params = {
     q: queryAfterThisDate(subDays(new Date(), LAST_SEVEN_DAYS)),
   };
-  const repos = await ReposService.getAllRepos({ ...params, ...filters }).then(
+  const repos = await RepoService.getAllRepos({ ...params, ...filters }).then(
     (data) => data.items
   );
   return repos.map(initRepo);
 }
 
-const ReposManager = {
+const RepoManager = {
   getTrendingRepos,
 };
 
-export default ReposManager;
+export default RepoManager;

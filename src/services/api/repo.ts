@@ -7,8 +7,8 @@ function getAllRepos(params: Dict) {
   return httpClient.get(END_POINT, { params }).then(resHandler);
 }
 
-const ReposService = {
+const RepoService = {
   getAllRepos,
 };
 
-export default ReposService;
+export default RepoService;
