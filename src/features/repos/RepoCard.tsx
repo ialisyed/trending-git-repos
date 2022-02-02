@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import styled from "styled-components";
-import { useAppDispatch } from "../../app/hooks";
 
+import { useAppDispatch } from "../../app/hooks";
 import Box from "../../components/Box";
 import Divider from "../../components/Divider";
 import Flex from "../../components/Flex";

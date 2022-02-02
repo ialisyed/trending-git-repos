@@ -1,5 +1,5 @@
-import { Repo } from "./reposSlice";
 import { Dict } from "../../interfaces";
+import { Repo } from "./reposSlice";
 
 export const initRepo = (_repo: Dict) => {
   const isStarred = localStorage.getItem(_repo.id);

@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { Col, Container, Row } from "styled-bootstrap-grid";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import LOCALE from "../../locale";
 import Box from "../../components/Box";
 import CheckboxLabel from "../../components/ChecboxLabel";
 import Checkbox from "../../components/Checkbox";
 import Flex from "../../components/Flex";
-import LOCALE from "../../locale";
 import RepoCard from "./RepoCard";
 import {
   getTrendingReposAsync,

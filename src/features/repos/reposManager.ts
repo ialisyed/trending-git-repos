@@ -1,7 +1,8 @@
 import { subDays } from "date-fns";
-import { initRepo } from "./reposFactory";
-import ReposService from "../../services/repos";
+
+import ReposService from "../../services/api/repos";
 import { queryAfterThisDate } from "../../utils/dateQuery";
+import { initRepo } from "./reposFactory";
 import { Repo, RepoFilters } from "./reposSlice";
 
 const LAST_SEVEN_DAYS = 7;
