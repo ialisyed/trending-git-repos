@@ -44,7 +44,13 @@ Apart from that:
 
 ## UI implemented
 
+### Default
+
   <img src="./readme-assets/Home Page SC.png" />
+
+### Filtered
+
+  <img src="./readme-assets/Home Page SC-filtered.png" />
   
 ## Before running the project, install the dependencies
 
