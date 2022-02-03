@@ -21,9 +21,16 @@ import {
 interface Props {}
 
 const RepoList: FC<Props> = () => {
+  /** Repos array */
   const data = useAppSelector(selectComputedRepos);
+
+  /** repo error state array */
   const error = useAppSelector(selectRepoError);
+
+  /** repo loading state array */
   const loading = useAppSelector(selectRepoLoading);
+
+  /** repo localfilter state array */
   const localFilters = useAppSelector(selectLocalFilters);
 
   const dispatch = useAppDispatch();

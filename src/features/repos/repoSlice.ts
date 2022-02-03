@@ -108,11 +108,21 @@ export const repoSlice = createSlice({
 
 export const { starRepo, unStarRepo, setStarredFilter } = repoSlice.actions;
 
+/**
+ * @returns repo `data` state
+ */
 export const selectRepos = (state: RootState) => state.repo.data;
 
+/**
+ * @returns repo `data` state filtered by `isStarred`
+ */
 export const selectStarredRepos = createSelector([selectRepos], (repos) =>
   repos.filter((repos) => repos.isStarred)
 );
+
+/**
+ * @returns repo `localFilters` state
+ */
 export const selectLocalFilters = (state: RootState) => state.repo.localFilters;
 
 /**
