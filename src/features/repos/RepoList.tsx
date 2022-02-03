@@ -60,10 +60,10 @@ const RepoList: FC<Props> = () => {
   }
 
   const renderRepos = () =>
-    data.map((repo: Repo, idx: number) => (
+    data.map((repo: Repo) => (
       <Col md={3} sm={12} key={repo.fullName}>
         <Box mb="10px">
-          <RepoCard {...repo} idx={idx} />
+          <RepoCard {...repo} />
         </Box>
       </Col>
     ));

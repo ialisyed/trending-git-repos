@@ -15,7 +15,7 @@ interface Props {
   stars: number;
   fullName: string;
   url: string;
-  idx: number;
+  id: number;
 }
 
 const StarContainer = styled(Flex)`
@@ -31,7 +31,7 @@ const StarContainer = styled(Flex)`
 `;
 
 const RepoCard: FC<Props> = React.memo(
-  ({ isStarred, description, fullName, stars, url, idx }) => {
+  ({ isStarred, description, fullName, stars, url, id }) => {
     const dispatch = useAppDispatch();
     return (
       <Flex
@@ -49,7 +49,7 @@ const RepoCard: FC<Props> = React.memo(
             data-cy="star-btn"
             data-starred={isStarred}
             onClick={() =>
-              isStarred ? dispatch(unStarRepo(idx)) : dispatch(starRepo(idx))
+              isStarred ? dispatch(unStarRepo(id)) : dispatch(starRepo(id))
             }
             p="5px"
             justifyContent="space-between"

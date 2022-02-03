@@ -53,7 +53,7 @@ export const getTrendingReposAsync = createAsyncThunk(
   "repo/getAllRepos",
   async (arg, { getState }) => {
     const state = getState() as RootState;
-    const response = await RepoManager.getReposInLastSevenDays(
+    const response = await RepoManager.getReposInLastSevenDaysAsync(
       state.repo.filters
     );
     return response;
@@ -66,14 +66,16 @@ export const repoSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     starRepo: (state, action: PayloadAction<number>) => {
-      const index = action.payload;
+      const id = action.payload;
+      const index = state.data.findIndex((_repo) => _repo.id === id);
       const repo = state.data[index];
       repo.isStarred = true;
       repo.stars += 1;
       localStorage.setItem(repo.id.toString(), "1");
     },
     unStarRepo: (state, action: PayloadAction<number>) => {
-      const index = action.payload;
+      const id = action.payload;
+      const index = state.data.findIndex((_repo) => _repo.id === id);
       const repo = state.data[index];
       repo.isStarred = false;
       repo.stars -= 1;

@@ -12,7 +12,9 @@ const LAST_SEVEN_DAYS = 7;
  * @param filters Object of type RepoFilters
  * @returns Promise for trending repos in last week
  */
-async function getReposInLastSevenDays(filters: RepoFilters): Promise<Repo[]> {
+async function getReposInLastSevenDaysAsync(
+  filters: RepoFilters
+): Promise<Repo[]> {
   const params = {
     q: queryAfterThisDate(subDays(new Date(), LAST_SEVEN_DAYS)),
   };
@@ -26,7 +28,7 @@ async function getReposInLastSevenDays(filters: RepoFilters): Promise<Repo[]> {
  * Data manager for repositories
  */
 const RepoManager = {
-  getReposInLastSevenDays,
+  getReposInLastSevenDaysAsync,
 };
 
 export default RepoManager;
