@@ -40,7 +40,7 @@ Apart from that:
 
 - Typescript is used to safely pass props to the components.
 
-- Usign `createSelector` for deriving data. [Reference](https://redux.js.org/usage/deriving-data-selectors)
+- Using `createSelector` for deriving data. [Reference](https://redux.js.org/usage/deriving-data-selectors)
 
 - Default performance optimization hooks are used to reduce multiple renders
 
