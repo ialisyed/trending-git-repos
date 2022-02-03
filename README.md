@@ -9,14 +9,14 @@ This project uses
 - [React-Hooks](https://reactjs.org/docs/hooks-intro.html)
 - [Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started)
 - [Cypress](https://www.cypress.io/) for end to end testing
-- [Styled Components](https://styled-components.com/)
+- [Styled Components](https://styled-components.com/) - Used for learning purpose
 
 ## Folder description
 
 The project is using folder architecture ["Feature folders" / "Domain"-style](https://redux.js.org/faq/code-structure).
 Apart from that:
 
-- All the UI strings are moved to `/src/locale` folder
+- All the UI strings are in `/src/locale` folder
 
 - All generic components are under the `/src/components` folder.
 
@@ -32,13 +32,11 @@ Apart from that:
 
 - Folder `/src/interface` contains generic interfaces for project
 
-- Folder `/src/interface` contains generic interfaces for project
-
 - Folder `/src/services/api` contains API layer communication files
 
 ## Code
 
-- All the logical functions in project are kept separate from UI/Components files, and can be tested separately.
+- All the logical functions in project are kept separate from UI/Components.
 
 - Typescript is used to safely pass props to the components.
 
@@ -46,6 +44,8 @@ Apart from that:
 
 ## UI implemented
 
+  <img src="./readme-assets/Home Page SC.png" />
+  
 ## Before running the project, install the dependencies
 
 #### `$ yarn`

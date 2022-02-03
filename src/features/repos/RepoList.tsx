@@ -32,6 +32,9 @@ const RepoList: FC<Props> = () => {
     dispatch(getTrendingReposAsync());
   }, []);
 
+  /**
+   * update local filter for starred repos in the repo state
+   */
   const onCheckboxChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) =>
       dispatch(setStarredFilter(e!.target.checked)),

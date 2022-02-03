@@ -1,6 +1,11 @@
 import { Dict } from "../../interfaces";
 import { Repo } from "./repoSlice";
 
+/**
+ * Create repo object as per attributes used in this project
+ * @param _repo github api response repos
+ * @returns Repo object
+ */
 export const initRepo = (_repo: Dict) => {
   const isStarred = localStorage.getItem(_repo.id);
   const repo: Repo = {

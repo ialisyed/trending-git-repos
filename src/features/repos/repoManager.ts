@@ -7,7 +7,12 @@ import { Repo, RepoFilters } from "./repoSlice";
 
 const LAST_SEVEN_DAYS = 7;
 
-async function getTrendingRepos(filters: RepoFilters): Promise<Repo[]> {
+/**
+ * Fetch repositories created in last 7 days
+ * @param filters Object of type RepoFilters
+ * @returns Promise for trending repos in last week
+ */
+async function getReposInLastSevenDays(filters: RepoFilters): Promise<Repo[]> {
   const params = {
     q: queryAfterThisDate(subDays(new Date(), LAST_SEVEN_DAYS)),
   };
@@ -17,8 +22,11 @@ async function getTrendingRepos(filters: RepoFilters): Promise<Repo[]> {
   return repos.map(initRepo);
 }
 
+/**
+ * Data manager for repositories
+ */
 const RepoManager = {
-  getTrendingRepos,
+  getReposInLastSevenDays,
 };
 
 export default RepoManager;

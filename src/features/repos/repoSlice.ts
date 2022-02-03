@@ -46,11 +46,16 @@ const initialState: RepoState = {
   },
 };
 
+/**
+ * Fetch repos that were trending in last 7 days
+ */
 export const getTrendingReposAsync = createAsyncThunk(
   "repo/getAllRepos",
   async (arg, { getState }) => {
     const state = getState() as RootState;
-    const response = await RepoManager.getTrendingRepos(state.repo.filters);
+    const response = await RepoManager.getReposInLastSevenDays(
+      state.repo.filters
+    );
     return response;
   }
 );
@@ -108,14 +113,23 @@ export const selectStarredRepos = createSelector([selectRepos], (repos) =>
 );
 export const selectLocalFilters = (state: RootState) => state.repo.localFilters;
 
+/**
+ * @returns filtered/unfiltered repo `data` state
+ */
 export const selectComputedRepos = createSelector(
   [selectLocalFilters, selectRepos, selectStarredRepos],
   (localFilters, repos, starredRepos) =>
     localFilters.starred ? starredRepos : repos
 );
 
+/**
+ * @returns repo `error` state
+ */
 export const selectRepoError = (state: RootState) => state.repo.error;
 
+/**
+ * @returns repo `loading` state
+ */
 export const selectRepoLoading = (state: RootState) => state.repo.loading;
 
 export default repoSlice.reducer;
