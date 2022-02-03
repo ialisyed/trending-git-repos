@@ -4,9 +4,10 @@ import {
   PayloadAction,
   createSelector,
 } from "@reduxjs/toolkit";
+
+import RepoManager from "./repoManager";
 import { RootState } from "../../app/store";
 import LOCALE from "../../locale";
-import RepoManager from "./repoManager";
 
 export interface Repo {
   fullName: string;

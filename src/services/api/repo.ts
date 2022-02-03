@@ -1,5 +1,5 @@
-import { Dict } from "../../interfaces";
 import httpClient, { resHandler } from "./axios";
+import { Dict } from "../../interfaces";
 
 const END_POINT = "repositories";
 

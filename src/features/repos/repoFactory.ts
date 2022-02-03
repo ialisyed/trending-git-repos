@@ -1,5 +1,5 @@
-import { Dict } from "../../interfaces";
 import { Repo } from "./repoSlice";
+import { Dict } from "../../interfaces";
 
 /**
  * Create repo object as per attributes used in this project
