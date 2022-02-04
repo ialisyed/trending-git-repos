@@ -67,17 +67,13 @@ export const repoSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     starRepo: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      const index = state.data.findIndex((_repo) => _repo.id === id);
-      const repo = state.data[index];
+      const repo = RepoManager.getRepoById(state.data, action.payload);
       repo.isStarred = true;
       repo.stars += 1;
       localStorage.setItem(repo.id.toString(), "1");
     },
     unStarRepo: (state, action: PayloadAction<number>) => {
-      const id = action.payload;
-      const index = state.data.findIndex((_repo) => _repo.id === id);
-      const repo = state.data[index];
+      const repo = RepoManager.getRepoById(state.data, action.payload);
       repo.isStarred = false;
       repo.stars -= 1;
       localStorage.removeItem(repo.id.toString());

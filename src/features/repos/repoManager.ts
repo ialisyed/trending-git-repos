@@ -24,11 +24,17 @@ async function getReposInLastSevenDaysAsync(
   return repos.map(initRepo);
 }
 
+function getRepoById(data: Repo[], id: number) {
+  const index = data.findIndex((_repo) => _repo.id === id);
+  return data[index];
+}
+
 /**
  * Data manager for repositories
  */
 const RepoManager = {
   getReposInLastSevenDaysAsync,
+  getRepoById,
 };
 
 export default RepoManager;
